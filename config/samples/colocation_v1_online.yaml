@@ -1,0 +1,7 @@
+apiVersion: colocation.cmyun.io/v1
+kind: Online
+metadata:
+  name: online-sample
+spec:
+  # Add fields here
+  foo: bar

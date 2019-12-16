@@ -1,0 +1,20 @@
+# permissions to do viewer onlines.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: online-viewer-role
+rules:
+- apiGroups:
+  - colocation.cmyun.io
+  resources:
+  - onlines
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - colocation.cmyun.io
+  resources:
+  - onlines/status
+  verbs:
+  - get

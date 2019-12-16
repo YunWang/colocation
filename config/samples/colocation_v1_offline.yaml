@@ -1,0 +1,7 @@
+apiVersion: colocation.cmyun.io/v1
+kind: Offline
+metadata:
+  name: offline-sample
+spec:
+  # Add fields here
+  foo: bar
