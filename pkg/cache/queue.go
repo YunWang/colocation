@@ -10,7 +10,7 @@ import (
 type Queue struct {
 	lock         sync.RWMutex
 	schedulingQ  *cache.Heap
-	current		 string
+	current		 *v1.Offline
 	name 		 string
 }
 
@@ -41,6 +41,25 @@ func (q *Queue) Get(key string) (*v1.Offline,bool){
 	return obj.(*v1.Offline),true
 }
 
+func(q *Queue) GetCurrent()*v1.Offline{
+	return q.current
+}
+func(q *Queue) UpdateCurrent()error{
+	if q.Len()==0 {
+		q.current=nil
+		return nil
+	}
+	obj,err:=q.schedulingQ.Pop()
+	if err!=nil {
+		return err
+	}
+	q.current,err=obj.(*v1.Offline)
+	if err!=nil {
+		return err
+	}
+	return nil
+}
+
 func (q *Queue) List() {
 
 }
@@ -49,9 +68,6 @@ func (q *Queue) Peek() {
 
 }
 
-func(q *Queue) Scheduling()string{
-	return q.current
-}
 func (q *Queue) Delete(offline *v1.Offline) error {
 	return q.schedulingQ.Delete(offline)
 }

@@ -4,7 +4,4 @@ resources:
 - group: colocation
   kind: Offline
   version: v1
-- group: colocation
-  kind: Online
-  version: v1
 version: "2"

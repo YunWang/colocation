@@ -85,44 +85,6 @@ type OfflineList struct {
 	Items           []Offline `json:"items"`
 }
 
-// OnlineSpec defines the desired state of Online
-type OnlineSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Online. Edit Online_types.go to remove/update
-	Replicas *int32                `json:"replicas,omitempty"`
-	Selector *metav1.LabelSelector `json:"selector"`
-	Template v1.PodTemplateSpec    `json:"template"`
-}
-
-// OnlineStatus defines the observed state of Online
-type OnlineStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-}
-
-// +kubebuilder:object:root=true
-
-// Online is the Schema for the onlines API
-type Online struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   OnlineSpec   `json:"spec,omitempty"`
-	Status OnlineStatus `json:"status,omitempty"`
-}
-
-// +kubebuilder:object:root=true
-
-// OnlineList contains a list of Online
-type OnlineList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Online `json:"items"`
-}
-
 func init() {
 	SchemeBuilder.Register(&Offline{}, &OfflineList{})
-	SchemeBuilder.Register(&Online{}, &OnlineList{})
 }

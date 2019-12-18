@@ -70,17 +70,9 @@ func main() {
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("Offline"),
 		Scheme: mgr.GetScheme(),
-		Queue:  cache.NewQueue(),
+		Cache:cache.NewCache(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Offline")
-		os.Exit(1)
-	}
-	if err = (&controllers.OnlineReconciler{
-		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("Online"),
-		Scheme: mgr.GetScheme(),
-	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "Online")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

@@ -61,7 +61,16 @@ func(c *Cache) key(off *v1.Offline)string{
 	return fmt.Sprintf("%s/%s", off.Namespace, off.Name)
 }
 
-func New()*Cache{
+func(c *Cache) IsExistInUnSchedulableQ(off *v1.Offline)bool{
+	key:=c.key(off)
+	if _,exist:=c.unschedulableQ[key];exist{
+		return true
+	}else{
+		return false
+	}
+}
+
+func NewCache()*Cache{
 	c:= &Cache{
 		queues:make(map[string]*Queue),
 		unschedulableQ: make(map[string]struct{}),

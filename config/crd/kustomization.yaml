@@ -3,7 +3,6 @@
 # It should be run by config/default
 resources:
 - bases/colocation.cmyun.io_offlines.yaml
-- bases/colocation.cmyun.io_onlines.yaml
 # +kubebuilder:scaffold:crdkustomizeresource
 
 patchesStrategicMerge:
